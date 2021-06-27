@@ -1,0 +1,38 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+{% block title %}
+        Login
+        {% endblock title %}
+{% block content %}
+  <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+                  <div class="card mt-5">
+                          <div class="card-title alert alert-primary text-center" style="width: 100%;">
+                                  <h2>Login To Account</h2>
+                          </div>
+
+                          <div class="card-body">
+                                  <form action="{% url 'login-view' %}" method="POST">
+                                          
+                                   {% csrf_token %}
+                                   {% include 'messages.html' %}
+                                          <div class="form-group">
+                                            <input type="text" name="username" id="username-field" class="form-control form-control-sm" placeholder="John" value="{{fieldValues.username}}">
+                                          
+                                        </div>
+                                                                        
+                                           <div class="form-group">
+                                                <input type="password" name="password" id="password-field" class="form-control form-control-sm password-field" placeholder="********">
+                                                <small class="float-right py-3 showPasswordToggle">HIDE</small>
+                                            </div>
+                                          <input type="submit" value="Login" class="btn btn-block btn-primary submit-btn">
+                                  </form>
+                                  <span>Don't have an Account?</span><a href="{% url 'register' %}">Register</a>
+                                  <span>Forgot Password</span><a href="{% url 'reset-password' %}">Reset It</a>
+                          </div>
+                  </div>
+          </div>
+          <div class="col-md-4"></div>
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock content %}
